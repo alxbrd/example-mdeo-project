@@ -4,14 +4,12 @@ problem {
 	model <TTC_InputRDG_C.xmi>
 }
 goal {
+	refine metamodel {"Feature", "isEncapsulatedBy", 1, 1}
 	objective CRA maximise java { "models.cra.fitness.MaximiseCRA" }
 	constraint MinimiseClasslessFeatures java { "models.cra.fitness.MinimiseClasslessFeatures" }
 }
 search { 
-	mutate using <craEvolvers.henshin> unit "assignFeature"
-	mutate using <craEvolvers.henshin> unit "createClass"
-	mutate using <craEvolvers.henshin> unit "moveFeature"
-	mutate using <craEvolvers.henshin> unit "deleteEmptyClass"
+	mutate {"Class"}
 }
 solver {
 	optimisation provider moea algorithm NSGAII {
